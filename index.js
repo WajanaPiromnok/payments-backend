@@ -74,6 +74,10 @@ app.post('/codapay/notification', (req, res) => {
     }
 });
 
+app.get('/thank-you', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
