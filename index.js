@@ -37,6 +37,10 @@ app.post('/payment', async (req, res) => {
 
         // Send the payment URL back to Unity
         res.status(200).send({ paymentUrl });
+
+        const landingPageUrl = '/index.html';
+        res.redirect(landingPageUrl);
+
     } catch (error) {
         console.error('Error forwarding request:', error.message);
         console.error('Error Details:', error.response?.data || 'No further details available');
