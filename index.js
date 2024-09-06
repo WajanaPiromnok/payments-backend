@@ -47,6 +47,29 @@ app.post('/payment', async (req, res) => {
     }
 });
 
+app.post('/codapay/notification', (req, res) => {
+    try {
+        // Log the entire request body for debugging purposes
+        console.log('Received notification:', req.body);
+
+        // Extract necessary fields from Codapay's request
+        const { payout_id, request_id, request_amount, target_amount, payout_status } = req.body;
+
+        // Log or store the payment details as needed
+        console.log('Payout ID:', payout_id);
+        console.log('Request ID:', request_id);
+        console.log('Payout Status:', payout_status);
+
+        // You can save this information to a database or perform additional actions
+
+        // Send a response back to Codapay
+        res.status(200).send({ message: 'Notification received successfully' });
+    } catch (error) {
+        console.error('Error processing notification:', error);
+        res.status(500).send({ error: 'Failed to process notification' });
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
